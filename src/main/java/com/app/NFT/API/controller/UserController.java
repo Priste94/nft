@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.app.NFT.dto.UserDTO;
+import com.app.NFT.dto.UserLoginDTO;
 import com.app.NFT.entities.NFT;
 import com.app.NFT.entities.Transaction;
 import com.app.NFT.entities.User;
@@ -55,9 +56,9 @@ public class UserController {
 
 	}
 	
-	@GetMapping(value = "/user/{userName}/{password}", produces = "application/json")
-	public User getById(@PathVariable("userName") String userName, @PathVariable("password") String password) {
-		return  userService.SelByUsernameAndPassword(userName, password);
+	@PostMapping(value = "/user", consumes = "application/json")
+	public UserLoginDTO userAndPass(@RequestBody UserLoginDTO user) {
+		return  userService.SelByUsernameAndPassword(user);
 	}
 	
 	

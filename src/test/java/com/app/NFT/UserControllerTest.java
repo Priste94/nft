@@ -55,10 +55,10 @@ public class UserControllerTest {
 	
 	private String jsonData = "{\r\n"
 			+ "        \"idu\": \"\",\r\n"
-			+ "        \"name\": \"AdminchiumoTest\",\r\n"
-			+ "        \"password\": \"adminchiumoTest\",\r\n"
+			+ "        \"name\": \"AdminchiumoTesta\",\r\n"
+			+ "        \"password\": \"adminchiumoTesta\",\r\n"
 			+ "        \"wallet\": \"200000000\",\r\n"
-			+ "        \"userName\" : \"adminchiumoTest\"\r\n"
+			+ "        \"userName\" : \"adminchiumoTesta\"\r\n"
 			+ "}";
 
 //	@Test

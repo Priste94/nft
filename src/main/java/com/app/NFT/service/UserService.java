@@ -16,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.app.NFT.dto.UserDTO;
+import com.app.NFT.dto.UserLoginDTO;
 import com.app.NFT.entities.NFT;
 import com.app.NFT.entities.Transaction;
 import com.app.NFT.entities.User;
@@ -69,6 +70,14 @@ public class UserService implements IUserService{
 	        userDTO = modelMapper.map(user, UserDTO.class);
 	        return userDTO;
 	    }
+	 
+	 private UserLoginDTO convertEntityToDto2(User user){
+	        modelMapper.getConfiguration()
+	                .setMatchingStrategy(MatchingStrategies.LOOSE);
+	        UserLoginDTO userLoginDTO = new UserLoginDTO();
+	        userLoginDTO = modelMapper.map(user, UserLoginDTO.class);
+	        return userLoginDTO;
+	    }
 
 
 	@Override
@@ -97,8 +106,9 @@ public class UserService implements IUserService{
 	
 	public boolean isUniqueUserName(User user) {
 		if (user!=null)
-			if(user.getUserName()!=null && user.getIdu() ==  0) 
+			if(user.getUserName()!=null && user.getIdu() ==  0) {
 				return true;
+			}
 			return false;
 
 	}
@@ -116,8 +126,11 @@ public class UserService implements IUserService{
 	}
 
 
-	public User SelByUsernameAndPassword(String userName, String password) {
-		return userRepository.findByUserNameAndPassword(userName, password);
+	public UserLoginDTO SelByUsernameAndPassword(UserLoginDTO user) {
+		User u = userRepository.findByUserNameAndPassword(user.getUserName(), user.getPassword());
+		UserLoginDTO uld = new UserLoginDTO(u.getUserName(), u.getPassword());
+		return uld;
+		
 	}
 	
 	
