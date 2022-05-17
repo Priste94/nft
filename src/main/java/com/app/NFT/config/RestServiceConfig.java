@@ -14,6 +14,7 @@ public class RestServiceConfig {
 	private String allowedOrigin;
 	
 	
+	
 	@Bean
 	public WebMvcConfigurer corsConfigurer() {
 		return new WebMvcConfigurer() {
