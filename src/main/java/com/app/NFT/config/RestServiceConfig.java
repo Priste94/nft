@@ -13,6 +13,7 @@ public class RestServiceConfig {
 	@Value("${allowed.origin}")
 	private String allowedOrigin;
 	
+	
 	@Bean
 	public WebMvcConfigurer corsConfigurer() {
 		return new WebMvcConfigurer() {
