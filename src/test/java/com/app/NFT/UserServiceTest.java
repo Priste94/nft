@@ -53,8 +53,14 @@ public class UserServiceTest {
 
 	@Test
 	public void testUniqueUserName() {
-		String username = "adminq";
+
+		String username = "admina";
 		boolean result = userService.isUniqueUserName(userRepository.findByUserName(username));
 		assertFalse(result);
+		
+		username = "adminq";
+		result = userService.isUniqueUserName(userRepository.findByUserName(username));
+		assertFalse(!result);
+
 	}
 }

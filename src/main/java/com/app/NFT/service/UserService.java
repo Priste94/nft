@@ -37,7 +37,7 @@ public class UserService implements IUserService{
 	
 //	@Autowired
 //	private NFTService nFTService;
-	
+
 
 	@Override
 	public List<User> SelAll() {
@@ -51,18 +51,7 @@ public class UserService implements IUserService{
 				.map(this::convertEntityToDto)
 				.collect(Collectors.toList());
 	}
-	
-//  private UserLocationDTO convertEntityToDto(User user){
-//  UserDTO userDTO = new UserDTO();
-//  userDTO.s(user.getName());
-//  userDTO.setEmail(user.getEmail());
-//  userDTO.setPlace(user.getLocation().getPlace());
-//  userDTO.setLongitude(user.getLocation().getLongitude());
-//  userDTO.setLatitude(user.getLocation().getLatitude());
-//  return userDTO;
-//}
-	
-//	
+
 	 private UserDTO convertEntityToDto(User user){
 	        modelMapper.getConfiguration()
 	                .setMatchingStrategy(MatchingStrategies.LOOSE);
@@ -87,29 +76,35 @@ public class UserService implements IUserService{
 
 	@Override
 	public ResponseEntity<User> InsUser(User user) {
-		
-		if(isUniqueUserName(user)) {
-			User u = SelByUserName(user.getUserName());
-			if (user.getIdu() ==  0 && u==null)
-			{
-			   		
-				userRepository.save(user);
-				
-				return new ResponseEntity<User>(new HttpHeaders(), HttpStatus.CREATED);  
-	
-			}
-			}		
+		if (user==null)
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		else
+			if(user.getName()!=null && user.getUserName()!=null && user.getPassword()!=null && isUniqueUserName(user) && user.getIdu() ==  0) {
+				User u = SelByUserName(user.getUserName());
+				if (user.getIdu() ==  0 && u==null) {
+					   		
+						userRepository.save(user);
+						
+						return new ResponseEntity<User>(new HttpHeaders(), HttpStatus.CREATED);  
+			
+					}
+					}	
 		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+			
 	
 		
 	}
 	
+	User us;
 	public boolean isUniqueUserName(User user) {
-		if (user!=null)
-			if(user.getUserName()!=null && user.getIdu() ==  0) {
+		if (user!=null) {
+		    us = userRepository.findByUserName(user.getUserName());
+			if(us == null || user.getUserName()==null) 
 				return true;
-			}
 			return false;
+		}
+		
+			return true;
 
 	}
 
