@@ -14,6 +14,7 @@ public class NFTDTO {
 	private String author;
 	private double price;
 	private Status status;
+	private String url;
 	private Date dateOfInput;
 	private UserDTO ownedBy;
 
