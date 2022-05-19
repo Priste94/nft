@@ -13,6 +13,9 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.firewall.DefaultHttpFirewall;
+import org.springframework.security.web.firewall.HttpFirewall;
+import org.springframework.security.web.firewall.StrictHttpFirewall;
 
 import com.app.NFT.service.CustomUserDetailsService;
 
@@ -44,6 +47,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 		@Bean
 		public ModelMapper modelMapper(){
 			return new ModelMapper();
+		}
+		
+		@Bean
+		public HttpFirewall defaultHttpFirewall() {
+		    return new DefaultHttpFirewall();
 		}
 	 
 	    @Override

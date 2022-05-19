@@ -48,11 +48,11 @@ public class UserService implements IUserService{
 	public List<UserDTO> SelAllDTO() {
 		return userRepository.findAll()
 				.stream()
-				.map(this::convertEntityToDto)
+				.map(this::convertUserToUserDto)
 				.collect(Collectors.toList());
 	}
 
-	 private UserDTO convertEntityToDto(User user){
+	 private UserDTO convertUserToUserDto(User user){
 	        modelMapper.getConfiguration()
 	                .setMatchingStrategy(MatchingStrategies.LOOSE);
 	        UserDTO userDTO = new UserDTO();
@@ -60,7 +60,7 @@ public class UserService implements IUserService{
 	        return userDTO;
 	    }
 	 
-	 private UserLoginDTO convertEntityToDto2(User user){
+	 private UserLoginDTO convertUserToUserLoginDto(User user){
 	        modelMapper.getConfiguration()
 	                .setMatchingStrategy(MatchingStrategies.LOOSE);
 	        UserLoginDTO userLoginDTO = new UserLoginDTO();
