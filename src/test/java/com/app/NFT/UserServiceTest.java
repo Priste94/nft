@@ -50,7 +50,7 @@ public class UserServiceTest {
 	public void setup() throws Exception {
 	    this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
 	}
-//
+
 	@Test
 	public void testUniqueUserName() {
 

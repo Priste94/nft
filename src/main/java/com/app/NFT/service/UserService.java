@@ -95,9 +95,10 @@ public class UserService implements IUserService{
 		
 	}
 	
-	User us;
-	public boolean isUniqueUserName(User user) {
+	
+	public boolean isUniqueUserName(User user) {		
 		if (user!=null) {
+			User us;
 		    us = userRepository.findByUserName(user.getUserName());
 			if(us == null || user.getUserName()==null) 
 				return true;
@@ -121,10 +122,8 @@ public class UserService implements IUserService{
 	}
 
 
-	public UserLoginDTO SelByUsernameAndPassword(UserLoginDTO user) {
-		User u = userRepository.findByUserNameAndPassword(user.getUserName(), user.getPassword());
-		UserLoginDTO uld = new UserLoginDTO(u.getUserName(), u.getPassword());
-		return uld;
+	public User SelByUsernameAndPassword(UserLoginDTO user) {
+		return userRepository.findByUserNameAndPassword(user.getUserName(), user.getPassword());
 		
 	}
 	

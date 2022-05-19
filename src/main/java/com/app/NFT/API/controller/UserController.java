@@ -49,7 +49,7 @@ public class UserController {
 	}
 	
 	@PostMapping(value = "/user/insert", consumes="application/json")
-	public ResponseEntity<User> createTransaction(@RequestBody User user)
+	public ResponseEntity<User> createUser(@RequestBody User user)
 	{
 
 			return userService.InsUser(user);
@@ -57,7 +57,7 @@ public class UserController {
 	}
 	
 	@PostMapping(value = "/user", consumes = "application/json")
-	public UserLoginDTO userAndPass(@RequestBody UserLoginDTO user) {
+	public User userAndPass(@RequestBody UserLoginDTO user) {
 		return  userService.SelByUsernameAndPassword(user);
 	}
 	
