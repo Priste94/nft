@@ -120,7 +120,11 @@ public class UserService implements IUserService{
 
 
 	public User SelByUsernameAndPassword(UserLoginDTO user) {
-		return userRepository.findByUserNameAndPassword(user.getUserName(), user.getPassword());
+		User u = userRepository.findByUserNameAndPassword(user.getUserName(), user.getPassword());
+		if (u!=null)
+			return u;
+		else
+			return null;
 		
 	}
 	
