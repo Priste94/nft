@@ -49,7 +49,7 @@ public class NFT {
 	@Column(nullable = false, unique = true, length = 45)
 	private String url;
 	
-	//@JsonIgnore
+
 	@Column(nullable = false, length = 45)
 	private double price;
 	
@@ -69,21 +69,16 @@ public class NFT {
 	
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL,  mappedBy = "nft", orphanRemoval = true)
 	@EqualsAndHashCode.Exclude
-	//@JsonManagedReference
-	//@JsonBackReference
 	@JsonIgnore
 	private Set<Transaction> transactions = new HashSet<>();
 	
 	@ManyToOne
 	@JsonBackReference // =@JsonIgnore
-	//@EqualsAndHashCode.Exclude
-	//@JsonManagedReference
-	//@JsonIgnore
 	@JoinColumn(name = "ownedBy", referencedColumnName = "idu")
 	private User ownedBy;
 	
 	@JsonIgnore
-	 @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "favorites")
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "favorites")
 	    private Set<User> users = new HashSet<>();
 	
 	public NFT(int id, String url) {

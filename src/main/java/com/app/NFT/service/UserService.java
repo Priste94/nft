@@ -35,9 +35,6 @@ public class UserService implements IUserService{
     @Autowired
     private ModelMapper modelMapper;
 	
-//	@Autowired
-//	private NFTService nFTService;
-
 
 	@Override
 	public List<User> SelAll() {

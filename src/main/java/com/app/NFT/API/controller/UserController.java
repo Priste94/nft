@@ -56,7 +56,7 @@ public class UserController {
 
 	}
 	
-	@PostMapping(value = "/user", consumes = "application/json")
+	@PostMapping(value = "/user/login", consumes = "application/json")
 	public User userAndPass(@RequestBody UserLoginDTO user) {
 		return  userService.SelByUsernameAndPassword(user);
 	}

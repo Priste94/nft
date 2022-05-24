@@ -32,7 +32,6 @@ public class User {
     private int idu;
      
     @Column(name = "username", nullable = false, unique = true, length = 45)
-    //@JsonIgnore 
     private String userName;
      
     @Column(name = "password", nullable = false, length = 64)
@@ -44,31 +43,24 @@ public class User {
     private String name;
     
     @Column(name = "wallet", nullable = false)
-    //@JsonBackReference
     private double wallet;
     
     
     @OneToMany(mappedBy = "buyer", orphanRemoval = true)
     @EqualsAndHashCode.Exclude
     
-    //@JsonInclude
+
     @JsonIgnore
-    //@JsonManagedReference
-    //@JsonBackReference
 	private Set<Transaction> acquisitions = new HashSet<>();
     
     @OneToMany(cascade = CascadeType.ALL,  mappedBy = "seller", orphanRemoval = true)
     @EqualsAndHashCode.Exclude
     @JsonIgnore
-    //@JsonManagedReference
-    //@JsonBackReference
 	private Set<Transaction> sales = new HashSet<>();
     
     @OneToMany(cascade = CascadeType.ALL,  mappedBy = "ownedBy", orphanRemoval = true)
     @EqualsAndHashCode.Exclude
     @JsonIgnore
-    //@JsonManagedReference
-    //@JsonBackReference
 	private Set<NFT> nft = new HashSet<>();
     
 //    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL,  mappedBy = "utente", orphanRemoval = true)

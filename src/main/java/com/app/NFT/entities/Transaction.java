@@ -25,7 +25,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 //@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idt")
 @Entity
-//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @Table(name = "transactions")
 public class Transaction {
 	
@@ -40,23 +39,16 @@ public class Transaction {
 	private double price;
 	
 	@ManyToOne
-	//@JsonBackReference
 	@EqualsAndHashCode.Exclude
-	//@JsonManagedReference
 	@JoinColumn(nullable = false, name = "buyer", referencedColumnName = "idu")
 	private User buyer;
 	
 	@ManyToOne
-	//@JsonBackReference
-	//@EqualsAndHashCode.Exclude
-	//@JsonManagedReference
 	@JoinColumn(name = "seller", referencedColumnName = "idu")
 	private User seller;
 	
 	@ManyToOne
-	//@JsonIgnore
 	@EqualsAndHashCode.Exclude
-	//@JsonManagedReference
 	@JoinColumn(name = "id_nft", referencedColumnName = "idn")
 	private NFT nft;
 

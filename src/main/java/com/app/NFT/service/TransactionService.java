@@ -76,8 +76,8 @@ public class TransactionService implements ITransactionService{
 		User buyer = userService.SelByIdUser(transazione.getBuyer().getIdu());
 		User seller = userService.SelByIdUser(transazione.getSeller().getIdu());
 		if (nft.getStatus()==Status.ON_SALE) {
-			if ((nft.getOwnedBy() == null) || (nft.getOwnedBy() != null  && transazione.getBuyer().getIdu()!=nft.getOwnedBy().getIdu()))
-					if (transazione.getIdt() == 0)
+			if ((nft.getOwnedBy() == null) || (nft.getOwnedBy() != null  && transazione.getBuyer().getIdu()!=nft.getOwnedBy().getIdu())) //con il secondo controllo verifico che un utente non si compri un suo stesso nft
+					if (transazione.getIdt() == 0) //perchè l'id della transazione si genera in automatico in modo incrementale
 						if(buyer.getWallet()>=transazione.getPrice())
 							if (nft.getOwnedBy()!=null) { //con questa logico ho asserito che se nella richiesta si mette un venditore che non ha l'nft verrà inteso come null.. potrebbe aver senso avere una bad request
 								if(seller.getIdu()==nft.getOwnedBy().getIdu())
@@ -98,8 +98,6 @@ public class TransactionService implements ITransactionService{
 										
 										if (transazione.getSeller()!=null)
 											seller.increasesWallet(nft.getPrice());
-										//NFT nft = new NFT(transazione.getNft().getIdn(), transazione.getNft().getUrl(), true, transazione.getNft().getNome(),  transazione.getNft().getAutore(),  transazione.getNft().getDataInserimento(),  transazione.getNft().getTransazioni());
-										//transazione.getNft().setStato(true);
 										nFTService.InsNFT(nft);
 										transazioneRepository.save(transazione);
 						
